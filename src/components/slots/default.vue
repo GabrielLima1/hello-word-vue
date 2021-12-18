@@ -3,7 +3,7 @@
     <div class="d-flex container flex-column">
       <menu-navegacao />
 
-      <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center justify-content-center bg-white pt-4 pb-4 rounded-top rounded-bottom">
         <slot name='body' />
       </div>
     </div>

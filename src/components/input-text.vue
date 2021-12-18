@@ -1,27 +1,21 @@
 <template>
-  <input type="text" class="form-control" v-model="vModel">
+  <input type="text" class="form-control" @input="handleInput">
 </template>
 
 <script>
 
   export default {
     name: 'input-text-component',
-    props: {
-      value: {
-        type: String,
-        default: ''
-      }
-    },
-    mounted () {
-      this.vModel = this.value
-    },
+    props: ['label', 'value'],
     data () {
       return {
-        vModel: '55'
+        content: this.value
       }
     },
-    watch: {
-      
+    methods: {
+      handleInput () {
+        this.$emit('input', this.content)
+      }
     }
   }
 </script>
