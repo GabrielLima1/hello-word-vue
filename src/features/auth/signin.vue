@@ -39,8 +39,8 @@
     data () {
       return {
         fields: [
-          { name: 'email', placeholder: 'seu@email.com', validations: ['required'] },
-          { name: 'password', placeholder: 'sua senha', validations: ['required'] }
+          { name: 'email', label: 'E-mail', placeholder: 'seu@email.com', validations: ['required'] },
+          { name: 'password', label: 'Senha', placeholder: 'sua senha', validations: ['required'] }
         ],
         user: {
           email: 'email@email.com',

@@ -7,8 +7,10 @@
         <h3> {{ title }} </h3>
       </span>
       <template v-for="(field, index) in fields" :key="index">
-          <label class="mt-3" v-if="field.label">{{ field.label }}</label>
+        <div class="d-flex align-items-center">
+          <label class="w-40 text-nowrap" v-if="field.label">{{ field.label }}</label>
           <input-text class="mb-2" @input="setValue($event, field)" :placeholder="field.placeholder" />
+        </div>
       </template>
       <button type="submit" class="btn btn-primary px-4 py-2 mt-3 w-100"> {{ submitText }} </button>
     </form>
@@ -39,7 +41,6 @@
     },
     methods: {
       submit () {
-        this.resetErrors()
         if (this.isValid()) {
           this.$emit('submit', this.formObj)
         }
@@ -51,36 +52,45 @@
       },
       isValid () {
         if (this.fields.length !== 0) {
+          this.resetErrors()
           this.fields.map((field) => {
             if (field.validations.includes('required')) {
               this.isBlank(field)
             }
           })
 
-          return this.errors.length === 0
+          return this.errors.size === 0
         }
       },
       isBlank (field) {
         let value = this.obj[field.name]
-        // debugger
+
         if (value === undefined || value.trim() === '') {
           this.setError(field, 'é obrigatório')
         }
       },
       setError (field, message) {
+        let label = this.getLabel(field)
+        this.errors.add(`O campo <b>${label}</b> ${message}`)
+      },
+      getLabel (field) {
         let { label, name } = field
-        label = (label !== '' && label !== undefined) ? label : name
-        this.errors.push(`O campo <b>${label}</b> ${message}`)
+        return label !== undefined ? label : name
       },
       resetErrors () {
-        this.errors = []
+        this.errors.clear()
       }
     },
     data () {
       return {
         obj: {},
-        errors: []
+        errors: new Set()
       }
     }
   }
 </script>
+<style scoped>
+  .w-40 {
+    width: 40% !important;
+  }
+</style>

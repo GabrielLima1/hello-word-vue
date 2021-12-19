@@ -3,7 +3,7 @@
     <template v-slot:body>
       <div class="d-flex items-align-center justify-content-center bg-white w-100">
         <div class="d-flex">
-          <form-component title="Cadastro" :fields="fields" />
+          <form-component title="Cadastre-se" :fields="fields" />
         </div>
       </div>
     </template>
@@ -22,21 +22,11 @@
     data () {
       return {
         fields: [
-          { name: 'name', type: 'text', label: '', placeholder: 'Seu nome', validations: ['required'] },
-          { name: 'email', type: 'text', label: '', placeholder: 'seu@email.com', validations: ['required'] },
-          { name: 'password', label: '', placeholder: 'sua senha', validations: ['required'] }
-        ],
-        user: {
-          email: 'email@email.com',
-          password: ''
-        }
-      }
-    },
-    methods: {
-      setEmail () {
-        this.v$.$touch()
-        console.log(this.v$)
-        alert('oi')
+          { name: 'name', label: 'Nome', placeholder: 'Seu nome', validations: ['required'] },
+          { name: 'email', label: 'E-mail', placeholder: 'seu melhor email', validations: ['required'] },
+          { name: 'password', label: 'Senha', placeholder: 'sua senha', validations: ['required'] },
+          { name: 'confirm_password', label: 'Confirme sua senha', placeholder: 'só mais uma vez =)', validations: ['required'] }
+        ]
       }
     }
   }

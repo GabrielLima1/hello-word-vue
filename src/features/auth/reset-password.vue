@@ -3,7 +3,7 @@
     <template v-slot:body>
       <div class="d-flex items-align-center justify-content-center bg-white w-100">
         <div class="d-flex">
-          <form-component title="Enviar email para" :fields="fields" />
+          <form-component title="Esqueci minha senha" :fields="fields" />
         </div>
       </div>
     </template>
@@ -22,19 +22,8 @@
     data () {
       return {
         fields: [
-          { name: 'email', type: 'text', placeholder: 'seu@email.com', validations: ['required'] }
-        ],
-        user: {
-          email: 'email@email.com',
-          password: ''
-        }
-      }
-    },
-    methods: {
-      setEmail () {
-        this.v$.$touch()
-        console.log(this.v$)
-        alert('oi')
+          { name: 'email', label: 'E-mail', placeholder: 'seu melhor e-mail', validations: ['required'] }
+        ]
       }
     }
   }

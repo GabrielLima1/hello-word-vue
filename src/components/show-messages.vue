@@ -29,8 +29,8 @@
         default: ''
       },
       messages: {
-        type: Array,
-        default: () => []
+        type: Set,
+        default: () => new Set()
       },
       classType: {
         type: String,
@@ -39,7 +39,7 @@
     },
     methods: {
       hasItem () {
-        return this.messages.length > 0
+        return this.messages.size > 0
       },
       classMessage () {
         return this.classType ? `alert-${this.classType} border-${this.classType}` : ''
